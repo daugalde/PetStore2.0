@@ -1,0 +1,10 @@
+980;Neobol;3450;5
+981;Anti pulgas;3750
+982;Anti garrapatas;1450
+983;Vacuna fase 1;20450
+984;Vacuna fase 2;22450
+985;Vacuna fase 3;23450
+986;Anti viral 1;4322
+987;Anti viral 2;5000
+988;Alcohol para mascotas;345
+989;Suero para mascotas;34500
