@@ -130,8 +130,27 @@ void BinaryTree::SearchAllCitiesByCountryId(TreeNode* node, int countryId, strin
 	}
 }
 
-void BinaryTree::SearchAllCitiesByCountryId( int countryId, string& result) {
+void BinaryTree::SearchAllCitiesByCountryId(int countryId, string& result) {
 	this->SearchAllCitiesByCountryId(this->root, countryId, result);
+}
+
+void BinaryTree::SearchAllPetsByClientId(TreeNode* node, int clientId, string& result) {
+	if (node == NULL) {
+		return;
+	}
+	else {
+		Pet* pet = static_cast<Pet*>(node->GetElement());
+		if (pet->getClientId() == clientId) {
+
+			result.append(pet->ToString() + "\r\n");
+		}
+		SearchAllPetsByClientId(node->GetLeft(), clientId, result);
+		SearchAllPetsByClientId(node->GetRight(), clientId, result);
+	}
+}
+
+void BinaryTree::SearchAllPetsByClientId( int clientId, string& result) {
+	this->SearchAllPetsByClientId(this->root, clientId, result);
 }
 
 void BinaryTree::InOrder(string type, string& result) {
@@ -250,6 +269,25 @@ Appointment* BinaryTree::SearchAppointmentByIdAndPetId(int id, int petId,TreeNod
 		}
 	}
 	return result;
+}
+
+void BinaryTree::SearchAppointmentByPetId(int petId, string& result, TreeNode* node) {
+	if (node == NULL) {
+		return;
+	}
+	else {
+		Appointment* appointment = static_cast<Appointment*>(node->GetElement());
+		if (appointment->getPetId() == petId) {
+
+			result.append(appointment->ToString() + "\r\n");
+		}
+		SearchAppointmentByPetId( petId, result, node->GetLeft() );
+		SearchAppointmentByPetId( petId, result, node->GetRight());
+	}
+}
+
+void BinaryTree::SearchAppointmentByPetId( int petId, string& result) {
+	this->SearchAppointmentByPetId(petId, result, this->root);
 }
 
 bool BinaryTree::UpdateById(int id, string name, TreeNode* node) {

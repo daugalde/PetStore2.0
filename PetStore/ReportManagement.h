@@ -110,7 +110,7 @@ namespace PetStore {
 			// 
 			// idTextbox
 			// 
-			this->idTextbox->Location = System::Drawing::Point(244, 337);
+			this->idTextbox->Location = System::Drawing::Point(312, 337);
 			this->idTextbox->Name = L"idTextbox";
 			this->idTextbox->Size = System::Drawing::Size(416, 31);
 			this->idTextbox->TabIndex = 59;
@@ -150,7 +150,7 @@ namespace PetStore {
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(246, 249);
+			this->comboBox1->Location = System::Drawing::Point(312, 249);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(414, 33);
 			this->comboBox1->TabIndex = 63;
@@ -217,7 +217,36 @@ namespace PetStore {
 				this->viewer->Text = gcnew String(res.c_str());
 				break;
 			case 3:
-
+				if (this->idTextbox->Text->Length != 0 && System::Int32::TryParse(this->idTextbox->Text, id) && id > 0)
+				{
+					res = "";
+					this->app->getStore().GetPets()->SearchAllPetsByClientId(id, res);
+					this->viewer->Text = gcnew String(res.c_str());
+				}
+				else {
+					this->idTextbox->Text = "";
+					this->viewer->Text = "No hay Informacion de mascotas relacionada a ese Id Cliente";
+				}
+				break;
+			case 4:
+				if (this->idTextbox->Text->Length != 0 && System::Int32::TryParse(this->idTextbox->Text, id) && id > 0)
+				{
+					res = "";
+					this->app->getStore().GetAppointments()->SearchAppointmentByPetId(id,res);
+					this->viewer->Text = gcnew String(res.c_str());
+				}
+				else {
+					this->idTextbox->Text = "";
+					this->viewer->Text = "No hay Informacion de mascotas relacionada a ese Id Cliente";
+				}
+				break;
+			case 5:
+				res = "El Tratamientos Encontrados\r\n\r\n";
+				this->app->getStore().GetTreatments()->inorder(res);
+				this->viewer->Text = gcnew String(res.c_str());
+				break;
+			case 6:
+				
 				break;
 			default:
 				this->viewer->Text = "Seleccione un Reporte";
@@ -240,6 +269,16 @@ namespace PetStore {
 		{
 		case 1:
 			this->idLabel->Text = "Id Pais";
+			this->idLabel->Show();
+			this->idTextbox->Show();
+			break;
+		case 3:
+			this->idLabel->Text = "Id Cliente";
+			this->idLabel->Show();
+			this->idTextbox->Show();
+			break;
+		case 4:
+			this->idLabel->Text = "Id Mascota";
 			this->idLabel->Show();
 			this->idTextbox->Show();
 			break;

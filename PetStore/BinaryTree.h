@@ -27,6 +27,10 @@ private:
 
 	void SearchAllCitiesByCountryId(TreeNode* node, int countryId, string& result);
 
+	void SearchAllPetsByClientId(TreeNode* node, int clientId, string& result);
+
+	void SearchAppointmentByPetId( int petId, string& result, TreeNode* node);
+
 public:
 	bool hh = false;
 
@@ -56,6 +60,8 @@ public:
 
 	Appointment* SearchAppointmentByIdAndPetId(int id, int petId, TreeNode* node);
 
+	void SearchAppointmentByPetId(int petId, string& result);
+
 	Medication* SearchLastMedication(int id, int petId, TreeNode* node);
 
 	City* SearchCityById(int id, TreeNode* node);
@@ -82,7 +88,9 @@ public:
 
 	void PostOrder(string type, string& result);
 
-	void BinaryTree::SearchAllCitiesByCountryId( int countryId, string& result);
+	void SearchAllCitiesByCountryId( int countryId, string& result);
+
+	void SearchAllPetsByClientId(int clientId, string& result);
 
 	//AA TREE
 
