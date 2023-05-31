@@ -209,6 +209,9 @@
     <ClInclude Include="PrescribedTreatment.h" />
     <ClInclude Include="RBTree.h" />
     <ClInclude Include="RBTreeNode.h" />
+    <ClInclude Include="ReportManagement.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Store.h" />
     <ClInclude Include="Treatment.h" />
     <ClInclude Include="TreatmentManagement.h">
@@ -237,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Places.resx">
       <DependentUpon>Places.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportManagement.resx">
+      <DependentUpon>ReportManagement.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TreatmentManagement.resx">
       <DependentUpon>TreatmentManagement.h</DependentUpon>

@@ -116,5 +116,8 @@
     <ClInclude Include="PrescribedTreatment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ReportManagement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

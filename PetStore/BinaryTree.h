@@ -25,6 +25,8 @@ private:
 
 	void InOrder(TreeNode*, string type, string& result);
 
+	void SearchAllCitiesByCountryId(TreeNode* node, int countryId, string& result);
+
 public:
 	bool hh = false;
 
@@ -79,6 +81,8 @@ public:
 	void PreOrder(string type, string& result);
 
 	void PostOrder(string type, string& result);
+
+	void BinaryTree::SearchAllCitiesByCountryId( int countryId, string& result);
 
 	//AA TREE
 

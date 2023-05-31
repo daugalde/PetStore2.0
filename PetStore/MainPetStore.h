@@ -7,6 +7,7 @@
 #include "AppointmentManagement.h"
 #include "TreatmentManagement.h"
 #include "MedicationManagement.h"
+#include "ReportManagement.h"
 
 namespace PetStore {
 
@@ -62,7 +63,7 @@ namespace PetStore {
 	private: System::Windows::Forms::ToolStripMenuItem^ clientesToolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripMenuItem^ reportesToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ paisToolStripMenuItem2;
-	private: System::Windows::Forms::ToolStripMenuItem^ ciudadToolStripMenuItem2;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ facturacionToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ saldosToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ descuentosToolStripMenuItem;
@@ -151,6 +152,17 @@ namespace PetStore {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 	private: System::ComponentModel::IContainer^ components;
 
 
@@ -221,7 +233,6 @@ namespace PetStore {
 			this->medicacionToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reportesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->paisToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->ciudadToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->facturacionToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saldosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->descuentosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -391,28 +402,28 @@ namespace PetStore {
 			// insertCityToolStripMenuItem
 			// 
 			this->insertCityToolStripMenuItem->Name = L"insertCityToolStripMenuItem";
-			this->insertCityToolStripMenuItem->Size = System::Drawing::Size(359, 44);
+			this->insertCityToolStripMenuItem->Size = System::Drawing::Size(248, 44);
 			this->insertCityToolStripMenuItem->Text = L"Insertar";
 			this->insertCityToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainPetStore::insertCityToolStripMenuItem_Click);
 			// 
 			// searchCityToolStripMenuItem
 			// 
 			this->searchCityToolStripMenuItem->Name = L"searchCityToolStripMenuItem";
-			this->searchCityToolStripMenuItem->Size = System::Drawing::Size(359, 44);
+			this->searchCityToolStripMenuItem->Size = System::Drawing::Size(248, 44);
 			this->searchCityToolStripMenuItem->Text = L"Buscar";
 			this->searchCityToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainPetStore::searchCityToolStripMenuItem_Click);
 			// 
 			// eliminarToolStripMenuItem1
 			// 
 			this->eliminarToolStripMenuItem1->Name = L"eliminarToolStripMenuItem1";
-			this->eliminarToolStripMenuItem1->Size = System::Drawing::Size(359, 44);
+			this->eliminarToolStripMenuItem1->Size = System::Drawing::Size(248, 44);
 			this->eliminarToolStripMenuItem1->Text = L"Eliminar";
 			this->eliminarToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainPetStore::eliminarToolStripMenuItem1_Click);
 			// 
 			// modificarToolStripMenuItem1
 			// 
 			this->modificarToolStripMenuItem1->Name = L"modificarToolStripMenuItem1";
-			this->modificarToolStripMenuItem1->Size = System::Drawing::Size(359, 44);
+			this->modificarToolStripMenuItem1->Size = System::Drawing::Size(248, 44);
 			this->modificarToolStripMenuItem1->Text = L"Modificar";
 			this->modificarToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainPetStore::modificarToolStripMenuItem1_Click);
 			// 
@@ -646,10 +657,7 @@ namespace PetStore {
 			// 
 			// reportesToolStripMenuItem
 			// 
-			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->paisToolStripMenuItem2,
-					this->ciudadToolStripMenuItem2
-			});
+			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->paisToolStripMenuItem2 });
 			this->reportesToolStripMenuItem->Name = L"reportesToolStripMenuItem";
 			this->reportesToolStripMenuItem->Size = System::Drawing::Size(127, 36);
 			this->reportesToolStripMenuItem->Text = L"Reportes";
@@ -657,14 +665,9 @@ namespace PetStore {
 			// paisToolStripMenuItem2
 			// 
 			this->paisToolStripMenuItem2->Name = L"paisToolStripMenuItem2";
-			this->paisToolStripMenuItem2->Size = System::Drawing::Size(222, 44);
-			this->paisToolStripMenuItem2->Text = L"Pais";
-			// 
-			// ciudadToolStripMenuItem2
-			// 
-			this->ciudadToolStripMenuItem2->Name = L"ciudadToolStripMenuItem2";
-			this->ciudadToolStripMenuItem2->Size = System::Drawing::Size(222, 44);
-			this->ciudadToolStripMenuItem2->Text = L"Ciudad";
+			this->paisToolStripMenuItem2->Size = System::Drawing::Size(399, 44);
+			this->paisToolStripMenuItem2->Text = L"Mostrar Menu Reportes";
+			this->paisToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MainPetStore::paisToolStripMenuItem2_Click);
 			// 
 			// facturacionToolStripMenuItem
 			// 
@@ -1282,5 +1285,10 @@ namespace PetStore {
 		Places^ placesWindow = gcnew Places(this, this->app, CITY_TYPE, UPDATE_ACTION);
 		placesWindow->ShowDialog();
 	}
-	};
+	private: System::Void paisToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ReportManagement^ reportWindow = gcnew ReportManagement(this, this->app);
+		reportWindow->ShowDialog();
+	}
+};
 }

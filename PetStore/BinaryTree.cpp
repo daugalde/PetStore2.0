@@ -33,10 +33,8 @@ void BinaryTree::InOrder(TreeNode* node, string type, string& result) {
 		}
 		else if (type == "client") {
 			Client* client = static_cast<Client*>(node->GetElement());
-			cout << "El Id del Cliente : " << client->getId() << "  Nombre : " << client->getName() << " Direccion : " << client->getAddress()
-				<< " Codigo Pais : " << client->getCountryId() << " Codigo Ciudad : " << client->getCityId()
-				<< " Ultima visita : " << client->getDay() << "/" << client->getMonth() << "/" << client->getYear() << " Telefono " << client->getPhone()
-				<< " Descuento : " << client->getDiscount() << " Total debido : " << client->getBalance() << "\n\n";
+			
+			result.append(client->ToString() + "\r\n");
 		}
 		else {
 			result.append(to_string(node->GetElement()->getId()) + "\t" + node->GetElement()->getName() + "\r\n");
@@ -115,6 +113,25 @@ void BinaryTree::PostOrder(TreeNode* node, string type, string& result) {
 			result.append(to_string(node->GetElement()->getId()) + "\t" + node->GetElement()->getName() + "\r\n");
 		}
 	}
+}
+
+void BinaryTree::SearchAllCitiesByCountryId(TreeNode* node, int countryId, string& result) {
+	if (node == NULL) {
+		return;
+	}
+	else {
+		City* city = static_cast<City*>(node->GetElement());
+		if (city->getCountryId() == countryId){
+			
+			result.append(city->ToString() + "\r\n");
+		}
+		SearchAllCitiesByCountryId(node->GetLeft(), countryId, result);
+		SearchAllCitiesByCountryId(node->GetRight(), countryId, result);
+	}
+}
+
+void BinaryTree::SearchAllCitiesByCountryId( int countryId, string& result) {
+	this->SearchAllCitiesByCountryId(this->root, countryId, result);
 }
 
 void BinaryTree::InOrder(string type, string& result) {
