@@ -1,5 +1,6 @@
 #pragma once
 #include "AppManager.h"
+#include <algorithm>
 
 namespace PetStore {
 
@@ -246,6 +247,25 @@ namespace PetStore {
 				this->viewer->Text = gcnew String(res.c_str());
 				break;
 			case 6:
+				if (this->idTextbox->Text->Length != 0 && System::Int32::TryParse(this->idTextbox->Text, id) && id > 0)
+				{
+					vector<string> dates = { };
+
+					this->app->getStore().GetMedications()->SearchLastMedications(id,dates, this->app->getStore().GetMedications()->GetRoot());
+					
+					if (dates.size() > 1)
+					{
+						std::sort(dates.begin(), dates.end(), Helpers::compareDates);
+					}
+
+					string lastestDate = dates.at(dates.size() - 1);
+					Medication* lastMedication = this->app->getStore().GetMedications()->SearchLastByDateMedication(id, lastestDate, this->app->getStore().GetMedications()->GetRoot());
+					this->viewer->Text = "Se Busco la Medicacion";
+				}
+				else {
+					this->idTextbox->Text = "";
+					this->viewer->Text = "No hay Informacion de mascotas relacionada a es a Medicaciones";
+				}
 				
 				break;
 			default:
@@ -278,10 +298,12 @@ namespace PetStore {
 			this->idTextbox->Show();
 			break;
 		case 4:
+		case 6:
 			this->idLabel->Text = "Id Mascota";
 			this->idLabel->Show();
 			this->idTextbox->Show();
 			break;
+
 		default:
 			this->idLabel->Text = "Id";
 			this->idLabel->Hide();

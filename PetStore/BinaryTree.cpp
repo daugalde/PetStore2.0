@@ -510,21 +510,35 @@ Medication* BinaryTree::SearchLastMedication(int id, int petId, TreeNode* node) 
 	return result;
 }
 
-void BinaryTree::SearchLastByDateMedication(int petId, List& list, TreeNode* node) {
+
+void BinaryTree::SearchLastMedications(int petId, vector<string>& result, TreeNode* node) {
+
 	if (node == NULL) {
 		return;
 	}
 	else {
-		SearchLastByDateMedication(petId, list, node->GetLeft());
-		
-		if (static_cast<Medication*>(node->GetElement())->getPetId() == petId)
-		{
-			list.Push(static_cast<Medication*>(node->GetElement()));
+		if (petId == static_cast<Medication*>(node->GetElement())->getPetId()) {
+			result.push_back(static_cast<Medication*>(node->GetElement())->getFormattedLastVisitDate());
 		}
-		
-		SearchLastByDateMedication(petId, list, node->GetRight());
+		SearchLastMedications(petId, result, node->GetLeft());
+		SearchLastMedications(petId, result, node->GetRight());
+	}
+
+}
+
+Medication* BinaryTree::SearchLastByDateMedication(int petId, string date, TreeNode* node) {
+	if (node == NULL) {
+		return NULL;
+	}
+	else {
+		if (petId == static_cast<Medication*>(node->GetElement())->getPetId() && static_cast<Medication*>(node->GetElement())->getFormattedLastVisitDate()._Equal(date)) {
+			return static_cast<Medication*>(node->GetElement());
+		}
+		SearchLastByDateMedication(petId, date, node->GetLeft());
+		SearchLastByDateMedication(petId, date, node->GetRight());
 	}
 }
+
 
 //Reports
 string BinaryTree::GetClientReport(TreeNode* node, string type, float& sum) {

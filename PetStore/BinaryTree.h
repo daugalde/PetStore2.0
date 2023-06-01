@@ -8,6 +8,7 @@
 #include "Appointment.h"
 #include "Medication.h"
 #include "City.h"
+#include <vector>
 
 using namespace std;
 
@@ -64,6 +65,8 @@ public:
 
 	Medication* SearchLastMedication(int id, int petId, TreeNode* node);
 
+	void SearchLastMedications(int petId, vector<string>& result, TreeNode* node);
+
 	City* SearchCityById(int id, TreeNode* node);
 
 	bool UpdateById(int id, string name, TreeNode* node);
@@ -96,5 +99,5 @@ public:
 
 	string GetClientReport(TreeNode* node, string type, float& sum);
 
-	void SearchLastByDateMedication(int petId, List& list, TreeNode* node);
+	Medication* SearchLastByDateMedication(int petId, string date, TreeNode* node);
 };
