@@ -252,15 +252,42 @@ namespace PetStore {
 					vector<string> dates = { };
 
 					this->app->getStore().GetMedications()->SearchLastMedications(id,dates, this->app->getStore().GetMedications()->GetRoot());
-					
-					if (dates.size() > 1)
+					if (dates.size() > 0)
 					{
-						std::sort(dates.begin(), dates.end(), Helpers::compareDates);
-					}
+						string lastestDate = dates.at(dates.size() - 1);
+						Medication* lastMedication = new Medication();
+						this->app->getStore().GetMedications()->SearchLastByDateMedication(id, lastestDate, *(lastMedication), this->app->getStore().GetMedications()->GetRoot());
+						if (lastMedication != NULL)
+						{
+							res = "Las Medicaciones Encontrados\r\n\r\n";
+							res = lastMedication->ToString();
 
-					string lastestDate = dates.at(dates.size() - 1);
-					Medication* lastMedication = this->app->getStore().GetMedications()->SearchLastByDateMedication(id, lastestDate, this->app->getStore().GetMedications()->GetRoot());
-					this->viewer->Text = "Se Busco la Medicacion";
+							Pet* pet = static_cast<Pet*>(this->app->getStore().GetPets()->SearchById(id, this->app->getStore().GetPets()->GetRoot()));
+							if (pet != NULL)
+							{
+								res.append(pet->ToString());
+							}
+							
+							res.append("\r\n\r\n con los Tratamientos");
+
+							PointerNode aux = lastMedication->getTreatmentId()->GetHead();
+							while (aux) {
+
+								PrescribedTreatment* currentTreatment = static_cast<PrescribedTreatment*>(aux->GetObj());
+								res.append("\r\n\r\n");
+								res.append(currentTreatment->ToString());
+								aux = aux->GetNextNode();
+							}
+
+							this->viewer->Text = gcnew String(res.c_str());
+						}
+						else {
+							this->viewer->Text = "No se encontro la Medicacion";
+						}
+					}
+					else {
+						this->viewer->Text = "No hay Informacion de mascotas relacionada a es a Medicaciones";
+					}
 				}
 				else {
 					this->idTextbox->Text = "";

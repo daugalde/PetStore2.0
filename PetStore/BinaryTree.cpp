@@ -526,16 +526,17 @@ void BinaryTree::SearchLastMedications(int petId, vector<string>& result, TreeNo
 
 }
 
-Medication* BinaryTree::SearchLastByDateMedication(int petId, string date, TreeNode* node) {
+void BinaryTree::SearchLastByDateMedication(int petId, string date, Medication& result,TreeNode* node) {
+	
 	if (node == NULL) {
-		return NULL;
+		return;
 	}
 	else {
-		if (petId == static_cast<Medication*>(node->GetElement())->getPetId() && static_cast<Medication*>(node->GetElement())->getFormattedLastVisitDate()._Equal(date)) {
-			return static_cast<Medication*>(node->GetElement());
+		if (petId == static_cast<Medication*>(node->GetElement())->getPetId() && static_cast<Medication*>(node->GetElement())->getFormattedLastVisitDate().compare(date) == 0) {
+			result = *(static_cast<Medication*>(node->GetElement()));
 		}
-		SearchLastByDateMedication(petId, date, node->GetLeft());
-		SearchLastByDateMedication(petId, date, node->GetRight());
+		SearchLastByDateMedication(petId, date, result, node->GetLeft());
+		SearchLastByDateMedication(petId, date, result, node->GetRight());
 	}
 }
 

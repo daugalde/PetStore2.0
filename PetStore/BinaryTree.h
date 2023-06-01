@@ -99,5 +99,6 @@ public:
 
 	string GetClientReport(TreeNode* node, string type, float& sum);
 
-	Medication* SearchLastByDateMedication(int petId, string date, TreeNode* node);
+	//Medication* SearchLastByDateMedication(int petId, string date, TreeNode* node);
+	void SearchLastByDateMedication(int petId, string date, Medication& result, TreeNode* node);
 };
