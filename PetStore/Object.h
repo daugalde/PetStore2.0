@@ -10,7 +10,7 @@ private:
 	string name;
 	int visits = 0;
 	bool isDelete = false;
-
+	int count = 0;
 public:
 
 	Object() {
@@ -47,6 +47,14 @@ public:
 
 	void setVisits(int visits) {
 		this->visits = visits;
+	};
+
+	int getCount() {
+		return count;
+	};
+
+	void setCount(int count) {
+		this->count = count;
 	};
 
 	bool getIsDeleted() {

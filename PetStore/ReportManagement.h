@@ -185,6 +185,7 @@ namespace PetStore {
 		{
 			string res = "";
 			int id = -1;
+			float sum = 0.00;
 			switch (this->comboBox1->SelectedIndex)
 			{
 			case 0:
@@ -294,6 +295,21 @@ namespace PetStore {
 					this->viewer->Text = "No hay Informacion de mascotas relacionada a es a Medicaciones";
 				}
 				
+				break;
+			case 7:
+				res = "Clientes con mas Saldo\r\n\r\n";
+				this->app->getStore().GetClients()->GetClientReport(this->app->getStore().GetClients()->GetRoot(), "greaterBalance", res, sum);
+				this->viewer->Text = gcnew String(res.c_str());
+				break;
+			case 8:
+				res = "Clientes con mas credito\r\n\r\n";
+				this->app->getStore().GetClients()->GetClientReport(this->app->getStore().GetClients()->GetRoot(), "greaterCredit", res, sum);
+				this->viewer->Text = gcnew String(res.c_str());
+				break;
+			case 9:
+				res = "Clientes con mas descuento\r\n\r\n";
+				this->app->getStore().GetClients()->GetClientReport(this->app->getStore().GetClients()->GetRoot(), "greaterDiscount", res, sum);
+				this->viewer->Text = gcnew String(res.c_str());
 				break;
 			case 10:
 				res = "El Ultimos Tratamientos Encontrados\r\n\r\n";

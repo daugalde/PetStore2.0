@@ -97,7 +97,7 @@ public:
 
 	//AA TREE
 
-	string GetClientReport(TreeNode* node, string type, float& sum);
+	void GetClientReport(TreeNode* node, string type, string& result, float& sum);
 
 	//Medication* SearchLastByDateMedication(int petId, string date, TreeNode* node);
 	void SearchLastByDateMedication(int petId, string date, Medication& result, TreeNode* node);

@@ -27,6 +27,25 @@ bool List::HasTreatmentId(int id) {
 	return hasElement;
 }
 
+bool List::UpdateTreatmentCount(int id) {
+	bool hasElement = false;
+
+	Node* aux;
+	if (head != NULL) {
+		aux = head;
+		while (aux)
+		{
+			if (aux->value->getId() == id)
+			{
+				hasElement = true;
+				return hasElement;
+			}
+			aux = aux->NextNode;
+		}
+	}
+	return hasElement;
+}
+
 bool List::HasProductId(int id) {
 	bool hasElement = false;
 

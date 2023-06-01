@@ -542,38 +542,37 @@ void BinaryTree::SearchLastByDateMedication(int petId, string date, Medication& 
 
 
 //Reports
-string BinaryTree::GetClientReport(TreeNode* node, string type, float& sum) {
-	string result = "";
+void BinaryTree::GetClientReport(TreeNode* node, string type, string& result, float& sum) {
+
 	if (node == NULL) {
-		return "No hay Registros";
+		result = "No hay Registros";
 	}
 	else {
-		GetClientReport(node->GetLeft(), type, sum);
+		GetClientReport(node->GetLeft(), type, result, sum);
 		Client* client = static_cast<Client*>(node->GetElement());
 		if (type == "greaterBalance") {
 			
 			
 			if (client->getBalance() > sum )
 			{
-				result = client->getName();
+				result = client->ToString();
 				sum = client->getBalance();
 			}
 		}
 		else if (type == "greaterCredit") {
 			if (client->getTotalInvoiced() > sum)
 			{
-				result = client->getName();
+				result = client->ToString();
 				sum = client->getTotalInvoiced();
 			}
 		}
 		else if (type == "greaterDiscount") {
 			if (client->getDiscount() > sum)
 			{
-				result = client->getName();
+				result = client->ToString();
 				//sum = client->getDiscount();
 			}
 		}
-		GetClientReport(node->GetRight(), type, sum);
+		GetClientReport(node->GetRight(), type, result, sum);
 	}
-	return result;
 }
