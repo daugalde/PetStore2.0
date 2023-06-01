@@ -7,7 +7,7 @@ class Store {
 
 private:
 
-	List* sales;
+	List* invoices;
 	List* hotItems;
 	BinaryTree* clients;
 	BinaryTree* countries;
@@ -21,7 +21,7 @@ private:
 public:
 
 	Store() {
-		sales = new List();
+		invoices = new List();
 		hotItems = new List();
 		lastTreatments = new List();
 	}
@@ -74,12 +74,12 @@ public:
 		this->medication = medications;
 	};
 
-	List* getSales() {
-		return sales;
+	List* getInvoices() {
+		return invoices;
 	};
 
-	void setSales(List* sales) {
-		this->sales = sales;
+	void setInvoices(List* invoices) {
+		this->invoices = invoices;
 	};
 
 	List* getLastTreatments() {

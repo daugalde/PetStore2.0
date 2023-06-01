@@ -189,6 +189,7 @@
     <ClInclude Include="Country.h" />
     <ClInclude Include="FileLoader.h" />
     <ClInclude Include="Helpers.h" />
+    <ClInclude Include="Invoice.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="MainPetStore.h">
       <FileType>CppForm</FileType>

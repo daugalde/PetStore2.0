@@ -1348,7 +1348,7 @@ void AppManager::BillClient()
 
 		client->getGroceryItems()->Display("Item");
 
-		currentStore.setSales(client->getGroceryItems()->Join(currentStore.getSales()));
+		//currentStore.setSales(client->getGroceryItems()->Join(currentStore.getSales()));
 
 		client->setTotalInvoiced(client->getTotalInvoiced() + totalPrice);
 
@@ -1369,36 +1369,36 @@ void AppManager::CheckIfShelfShouldBeLoaded() {
 	
 	Store currentStore = getStore();
 
-	List* currentSales = currentStore.getSales();
+	//List* currentSales = currentStore.getSales();
 
 	List* currentAisles = new List();//currentStore.getAisles();
 
 	List* currentHotItems = currentStore.getHotItems();
 
-	if (currentSales != NULL)
-	{
-		//currentSales->GetItemsToRefillShelf(currentStore.getInventory(), currentAisles, currentHotItems);
-		cout << "\nProductos en Gondolas han sido rellenados" << endl;
-	}
-	cout << "\nPresione una tecla para volver al menu anterior." << endl;
+	//if (currentSales != NULL)
+	//{
+	//	//currentSales->GetItemsToRefillShelf(currentStore.getInventory(), currentAisles, currentHotItems);
+	//	cout << "\nProductos en Gondolas han sido rellenados" << endl;
+	//}
+	//cout << "\nPresione una tecla para volver al menu anterior." << endl;
 }
 
 void AppManager::CheckIfInvetoryShouldBeLoaded()
 {
 	Store currentStore = getStore();
 
-	List* currentSales = currentStore.getSales();
+	//List* currentSales = currentStore.getSales();
 
 	List* currentAisles = new List();//currentStore.getAisles();
 
-	if (currentSales != NULL)
-	{
-		//currentSales->GetItemsToRefillInventory(currentStore.getInventory(), currentAisles );
-		cout << "\nProductos en Inventario han sido rellenados" << endl;
-	}
-	else {
-		cout << "No Es Necesario Rellenar Inventatio\nPresione una tecla para volver al menu anterior." << endl;
-	}
+	//if (currentSales != NULL)
+	//{
+	//	//currentSales->GetItemsToRefillInventory(currentStore.getInventory(), currentAisles );
+	//	cout << "\nProductos en Inventario han sido rellenados" << endl;
+	//}
+	//else {
+	//	cout << "No Es Necesario Rellenar Inventatio\nPresione una tecla para volver al menu anterior." << endl;
+	//}
 };
 
 /// <summary>

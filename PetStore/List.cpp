@@ -37,6 +37,7 @@ bool List::UpdateTreatmentCount(int id) {
 		{
 			if (aux->value->getId() == id)
 			{
+				aux->value->setCount(aux->value->getCount() + 1);
 				hasElement = true;
 				return hasElement;
 			}
