@@ -2,24 +2,73 @@
 #include <iostream>
 #include "Object.h"
 #include "Client.h"
+#include "Pet.h"
+#include "Appointment.h"
+#include "Medication.h"
 using namespace std;
 
 class Invoice : public Object {
 
 private:
 	Client* client;
+	Pet* pet;
+	Appointment* appointment;
+	Medication* medication;
+
 
 public:
 
 	Invoice() {
-		this->client = new Client();
+		this->setIsDeleted(true);
+		this->client = NULL;
+		this->pet = NULL;
+		this->appointment = NULL;
 	}
 
-	Invoice(int id, string name, float price, int qty) : Object(id, name) {
+	Invoice(int id, Client* client, Pet* pet, Appointment* appointment) : Object(id, "Factura " + to_string(id)) {
+		this->setIsDeleted(true);
+		this->client = client;
+		this->pet = pet;
+		this->appointment = appointment;
 		/*this->price = price;
 		this->qty = qty;*/
 	}
 
+	Pet* getPet() {
+		return this->pet;
+	}
+
+	void setPet(Pet* pet) {
+		this->pet = pet;
+	}
+
+	Client* getClient() {
+		return this->client;
+	}
+
+	void setClient(Client* client) {
+		this->client = client;
+	}
+
+	Appointment* getAppointment() {
+		return this->appointment;
+	}
+
+	void setAppointment(Appointment* appointment) {
+		this->appointment = appointment;
+	}
+
+	Medication* getMedication() {
+		return this->medication;
+	}
+
+	void setMedication(Medication* medication) {
+		this->medication = medication;
+	}
+
+	bool isValidToCreateInvoice() {
+		return this->client != NULL && this->appointment != NULL && this->pet != NULL && medication != NULL;
+	}
 	/*float getPrice() {
 		return this->price;
 	};
@@ -52,4 +101,6 @@ public:
 	}
 
 	friend class List;
+	friend class AppointmentManagement;
+	friend class MedicationManagement;
 };

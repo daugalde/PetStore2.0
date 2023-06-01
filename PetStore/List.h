@@ -17,7 +17,7 @@ public:
 
 	bool UpdateTreatmentCount(int id);
 
-	bool HasProductId(int id);
+	bool HasInvoiceId(int id);
 
 	bool HasProductMakeId(int id);
 

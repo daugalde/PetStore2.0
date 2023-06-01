@@ -47,7 +47,7 @@ bool List::UpdateTreatmentCount(int id) {
 	return hasElement;
 }
 
-bool List::HasProductId(int id) {
+bool List::HasInvoiceId(int id) {
 	bool hasElement = false;
 
 	//Node* aux;

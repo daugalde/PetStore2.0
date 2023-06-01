@@ -7,6 +7,7 @@
 #include "Pet.h"
 #include "Appointment.h"
 #include "Medication.h"
+#include "Invoice.h"
 #include "City.h"
 #include <vector>
 

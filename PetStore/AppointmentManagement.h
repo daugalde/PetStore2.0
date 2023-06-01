@@ -354,6 +354,7 @@ namespace PetStore {
 		Pet* pet = NULL;
 		Appointment* appointment = NULL;
 		Client* client = NULL;
+		Invoice* invoice = NULL;
 		bool success = false;
 		int id = -1;
 		int id2 = -1;
@@ -394,6 +395,17 @@ namespace PetStore {
 						{
 							res = "Se Inserto Visita";
 							res.append("\n\rDe la Mascota " + pet->getName() + " Con ");
+
+							Client* client = static_cast<Client*>(this->app->getStore().GetClients()->SearchById(pet->getClientId(), this->app->getStore().GetClients()->GetRoot()));
+							if (!this->app->getStore().getInvoices()->HasInvoiceId(client->getId()))
+							{
+								if (client != NULL)
+								{
+									invoice = new Invoice(client->getId(), client, pet, appointment);
+									this->app->getStore().getInvoices()->Push(invoice);
+								}
+							}
+
 							this->viewer->Text = gcnew String((res.append(appointment->ToString())).c_str());
 						}
 						else {

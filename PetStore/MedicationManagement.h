@@ -356,7 +356,7 @@ namespace PetStore {
 		Appointment* appointment = NULL;
 		Treatment* treatment = NULL;
 		Pet* pet = NULL;
-		
+		Invoice* invoice = NULL;
 		bool successAction = false;
 		float totalDue = 0.00;
 		int id = -1;
@@ -414,6 +414,11 @@ namespace PetStore {
 								res = "Se Inserto la Medicacion de Mascota : ";
 								res.append(pet->getName());
 								this->viewer->Text = gcnew String((res.append(medication->ToString()).append(this->medicationList->ToString("prescribedTreatment"))).c_str());
+
+								if (this->app->getStore().getInvoices()->HasInvoiceId(pet->getClientId()))
+								{
+									invoice = static_cast<Invoice*>(this->app->getStore().getInvoices()->GetObjectById(pet->getClientId()));
+								}
 							}
 							else {
 								this->viewer->Text = "Error Insertar Medicamento Algun Dato no es valido";
