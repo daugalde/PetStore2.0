@@ -8,7 +8,7 @@
 
 using namespace std;
 
-bool List::HasAisleId(int id) {
+bool List::HasTreatmentId(int id) {
 	bool hasElement = false;
 
 	Node* aux;

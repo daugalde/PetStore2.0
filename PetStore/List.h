@@ -13,7 +13,7 @@ public:
 
 	bool IsEmpty() { return head == NULL; }
 
-	bool HasAisleId(int id);
+	bool HasTreatmentId(int id);
 
 	bool HasProductId(int id);
 

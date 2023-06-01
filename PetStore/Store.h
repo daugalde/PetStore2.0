@@ -16,12 +16,14 @@ private:
 	BinaryTree* appointments;
 	RBTree* treatments;
 	BinaryTree* medication;
+	List* lastTreatments;
 
 public:
 
 	Store() {
 		sales = new List();
 		hotItems = new List();
+		lastTreatments = new List();
 	}
 
 	BinaryTree* GetCountries() {
@@ -78,6 +80,14 @@ public:
 
 	void setSales(List* sales) {
 		this->sales = sales;
+	};
+
+	List* getLastTreatments() {
+		return lastTreatments;
+	};
+
+	void setLastTreatments(List* lastTreatments) {
+		this->lastTreatments = lastTreatments;
 	};
 
 	List* getHotItems() {

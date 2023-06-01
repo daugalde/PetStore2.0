@@ -31,7 +31,7 @@ public:
 
 	RBTree* ReadAndLoadTreatmentsFile();
 
-	BinaryTree* ReadAndLoadMedicationsFile(RBTree* treadments);
+	BinaryTree* ReadAndLoadMedicationsFile(RBTree* treadments, Store* store);
 
 	BinaryTree* ReadAndLoadClientFile();
 };

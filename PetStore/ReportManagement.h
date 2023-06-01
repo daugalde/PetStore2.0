@@ -295,6 +295,11 @@ namespace PetStore {
 				}
 				
 				break;
+			case 10:
+				res = "El Ultimos Tratamientos Encontrados\r\n\r\n";
+				res.append(this->app->getStore().getLastTreatments()->ToString("prescribedTreatment"));
+				this->viewer->Text = gcnew String(res.c_str());
+				break;
 			default:
 				this->viewer->Text = "Seleccione un Reporte";
 				break;

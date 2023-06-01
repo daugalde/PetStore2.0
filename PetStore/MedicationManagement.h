@@ -397,6 +397,7 @@ namespace PetStore {
 
 								Treatment* searchTreatment = static_cast<Treatment*>(this->app->getStore().GetTreatments()->SearchById(aux->GetObj()->getId()));
 								PrescribedTreatment* currentTreatment = static_cast<PrescribedTreatment*>(aux->GetObj());
+								this->app->getStore().getLastTreatments()->Push(currentTreatment);
 								totalPrice = totalPrice + currentTreatment->getPrice();
 								newStockQty = searchTreatment->getStockQuantity() - currentTreatment->getQuantity();
 								searchTreatment->setStockQuantity(newStockQty);

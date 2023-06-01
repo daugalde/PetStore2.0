@@ -34,7 +34,7 @@ Store FileLoader::LoadFiles() {
 
 	store.SetTreatments(ReadAndLoadTreatmentsFile());
 
-	store.SetMedications(ReadAndLoadMedicationsFile(store.GetTreatments()));
+	store.SetMedications(ReadAndLoadMedicationsFile(store.GetTreatments(), &store));
 
 	return store;
 }
@@ -372,7 +372,7 @@ RBTree* FileLoader::ReadAndLoadTreatmentsFile() {
 	return rbTree;
 }
 
-BinaryTree* FileLoader::ReadAndLoadMedicationsFile(RBTree* treatments) {
+BinaryTree* FileLoader::ReadAndLoadMedicationsFile(RBTree* treatments, Store* store) {
 
 	string str;
 
@@ -430,7 +430,7 @@ BinaryTree* FileLoader::ReadAndLoadMedicationsFile(RBTree* treatments) {
 					{
 						
 						treatment = static_cast<PrescribedTreatment*>(treatments->SearchById(stoi(str)));
-						
+						store->getLastTreatments()->Push(treatment);
 					}
 					catch (...)
 					{
