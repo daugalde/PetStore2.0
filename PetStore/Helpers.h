@@ -33,6 +33,24 @@ public:
 		return ltrim(rtrim(s));
 	}
 
+	bool isFourDigitsNumber(int number) {
+		string n = to_string(number);
+
+		try
+		{
+			return n.length() == 4;
+		}
+		catch (...)
+		{
+			return false;
+		}
+	}
+
+	bool static compareDates(const std::string& date1, const std::string& date2) {
+		// Assuming the date format is "YYYY-MM-DD"
+		return date1 < date2;
+	}
+
 	// GFG TAKEN
 	struct Date {
 		int d, m, y;

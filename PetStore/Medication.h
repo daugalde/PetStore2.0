@@ -114,6 +114,10 @@ public:
 		this->totalPrice = totalPrice;
 	};
 
+	string getFormattedLastVisitDate() {
+		return to_string(this->getLastVisitYear()) + "-" + to_string(this->getLastVisitMonth()) + "-" + to_string(this->getLastVisitDay());
+	}
+
 	string ToString() {
 		string result = "";
 
