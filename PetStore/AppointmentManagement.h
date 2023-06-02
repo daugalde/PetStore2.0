@@ -405,6 +405,11 @@ namespace PetStore {
 									this->app->getStore().getInvoices()->Push(invoice);
 								}
 							}
+							else {
+								invoice = static_cast<Invoice*>(this->app->getStore().getInvoices()->GetObjectById(pet->getClientId()));
+								invoice->setAppointment(appointment);
+								this->app->getStore().getInvoices()->UpdateObject(invoice);
+							}
 
 							this->viewer->Text = gcnew String((res.append(appointment->ToString())).c_str());
 						}

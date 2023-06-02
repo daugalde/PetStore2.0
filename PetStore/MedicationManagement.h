@@ -419,6 +419,14 @@ namespace PetStore {
 								{
 									invoice = static_cast<Invoice*>(this->app->getStore().getInvoices()->GetObjectById(pet->getClientId()));
 								}
+								else {
+									Client* client = static_cast<Client*>(this->app->getStore().GetClients()->SearchById(pet->getClientId(), this->app->getStore().GetClients()->GetRoot()));
+									if (client != NULL)
+									{
+										invoice = new Invoice(pet->getClientId(), client, pet, appointment);
+										this->app->getStore().getInvoices()->Push(invoice);
+									}
+								}
 							}
 							else {
 								this->viewer->Text = "Error Insertar Medicamento Algun Dato no es valido";

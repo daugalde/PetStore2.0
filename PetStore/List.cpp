@@ -623,6 +623,26 @@ Object* List::GetObjectFromInventory(int id)
 	return NULL;
 }
 
+bool List::UpdateObject(Object* value) {
+	bool hasElement = false;
+
+	Node* aux;
+	if (head != NULL) {
+		aux = head;
+		while (aux)
+		{
+			if (aux->value->getId() == value->getId())
+			{
+				aux->SetObj(value);
+				hasElement = true;
+				return hasElement;
+			}
+			aux = aux->NextNode;
+		}
+	}
+	return hasElement;
+}
+
 string List::ToString(string type) {
 	Node* aux;
 	string result;

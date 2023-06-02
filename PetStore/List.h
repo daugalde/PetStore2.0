@@ -59,6 +59,8 @@ public:
 
 	Object* GetObjectFromInventory(int id);
 
+	bool UpdateObject(Object* value);
+
 	string ToString(string type);
 
 	PointerNode GetHead() {

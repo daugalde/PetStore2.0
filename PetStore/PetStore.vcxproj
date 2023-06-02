@@ -190,6 +190,9 @@
     <ClInclude Include="FileLoader.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Invoice.h" />
+    <ClInclude Include="InvoiceManagement.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="List.h" />
     <ClInclude Include="MainPetStore.h">
       <FileType>CppForm</FileType>
@@ -229,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientManagement.resx">
       <DependentUpon>ClientManagement.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceManagement.resx">
+      <DependentUpon>InvoiceManagement.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPetStore.resx">
       <DependentUpon>MainPetStore.h</DependentUpon>

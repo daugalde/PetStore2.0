@@ -8,6 +8,7 @@
 #include "TreatmentManagement.h"
 #include "MedicationManagement.h"
 #include "ReportManagement.h"
+#include "InvoiceManagement.h"
 
 namespace PetStore {
 
@@ -1274,6 +1275,9 @@ namespace PetStore {
 		reportWindow->ShowDialog();
 	}
 	private: System::Void facturacionToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		InvoiceManagement^ invoiceWindow = gcnew InvoiceManagement(this, this->app);
+		invoiceWindow->ShowDialog();
 	}
 	};
 }

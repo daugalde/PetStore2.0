@@ -32,6 +32,10 @@ public:  // Constructors
 		return this->value;
 	}
 
+	void SetObj(Object* obj) {
+		this->value = obj;
+	}
+
 	friend class Queue;
 	friend class List;
 	friend class Object;
