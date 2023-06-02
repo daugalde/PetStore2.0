@@ -15,7 +15,6 @@ private:
 	Appointment* appointment;
 	Medication* medication;
 
-
 public:
 
 	Invoice() {
@@ -85,6 +84,10 @@ public:
 		this->qty = qty;
 	};*/
 
+	void conciliateData() {
+
+	}
+
 	string ToString() {
 		/*string result = "";
 		string formattedBalanceString = std::to_string(this->getPrice());
@@ -97,7 +100,7 @@ public:
 			"Cantidad Disponible Stock :\t" + to_string(this->getStockQuantity()) + "\r\n" +
 			"Precio Unitario: \t" + formattedBalanceString + "\r\n" +
 			"\r\n");*/
-		return client->ToString();
+		return "Cliente :\r\n" + client->ToString() + "\r\nMascota:\r\n" + pet->ToString() + "\r\n con Vista \r\n" + appointment->ToString() + "\r\nSe le envio la Medicacion\r\n" + medication->ToString();
 	}
 
 	friend class List;

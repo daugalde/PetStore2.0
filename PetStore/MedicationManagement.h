@@ -415,17 +415,21 @@ namespace PetStore {
 								res.append(pet->getName());
 								this->viewer->Text = gcnew String((res.append(medication->ToString()).append(this->medicationList->ToString("prescribedTreatment"))).c_str());
 
-								if (this->app->getStore().getInvoices()->HasInvoiceId(pet->getClientId()))
+								if (!this->app->getStore().getInvoices()->HasInvoiceId(pet->getClientId()))
 								{
-									invoice = static_cast<Invoice*>(this->app->getStore().getInvoices()->GetObjectById(pet->getClientId()));
-								}
-								else {
 									Client* client = static_cast<Client*>(this->app->getStore().GetClients()->SearchById(pet->getClientId(), this->app->getStore().GetClients()->GetRoot()));
 									if (client != NULL)
 									{
 										invoice = new Invoice(pet->getClientId(), client, pet, appointment);
+										invoice->setMedication(medication);
 										this->app->getStore().getInvoices()->Push(invoice);
 									}
+								}
+								else {
+									
+									invoice = static_cast<Invoice*>(this->app->getStore().getInvoices()->GetObjectById(pet->getClientId()));
+									invoice->setMedication(medication);
+									this->app->getStore().getInvoices()->UpdateObject(invoice);
 								}
 							}
 							else {

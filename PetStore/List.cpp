@@ -5,6 +5,7 @@
 #include "Medication.h"
 #include "Treatment.h"
 #include "PrescribedTreatment.h"
+#include "Invoice.h"
 
 using namespace std;
 
@@ -50,20 +51,19 @@ bool List::UpdateTreatmentCount(int id) {
 bool List::HasInvoiceId(int id) {
 	bool hasElement = false;
 
-	//Node* aux;
-	//if (head != NULL) {
-	//	aux = head;
-	//	while (aux)
-	//	{
-	//		Product* product = static_cast<Product*>(aux->value);
-	//		if (product != NULL && product->getProductId() == id)
-	//		{
-	//			hasElement = true;
-	//			return hasElement;
-	//		}
-	//		aux = aux->NextNode;
-	//	}
-	//}
+	Node* aux;
+	if (head != NULL) {
+		aux = head;
+		while (aux)
+		{
+			if (aux->value->getId() == id)
+			{
+				hasElement = true;
+				return hasElement;
+			}
+			aux = aux->NextNode;
+		}
+	}
 	return hasElement;
 }
 
@@ -667,6 +667,13 @@ string List::ToString(string type) {
 			{
 				PrescribedTreatment* treatment = static_cast<PrescribedTreatment*>(aux->value);
 				result.append(treatment->ToString());
+
+			}
+			else if (type == "invoice")
+			{
+				Invoice* invoice = static_cast<Invoice*>(aux->value);
+				invoice->conciliateData();
+				result.append(invoice->ToString());
 
 			}
 			aux = aux->NextNode;

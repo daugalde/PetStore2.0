@@ -137,7 +137,9 @@ namespace PetStore {
 		this->obj->Show();
 	}
 	private: System::Void actionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->viewer->Text = "Test ";
+		string res = this->app->getStore().getInvoices()->ToString("invoice");
+
+		this->viewer->Text = gcnew String((res).c_str());
 	}
 };
 }
