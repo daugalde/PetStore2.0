@@ -6,6 +6,7 @@
 #include "Appointment.h"
 #include "Treatment.h"
 #include "Medication.h"
+#include "PrescribedTreatment.h"
 
 using namespace std;
 

@@ -398,7 +398,7 @@ namespace PetStore {
 								Treatment* searchTreatment = static_cast<Treatment*>(this->app->getStore().GetTreatments()->SearchById(aux->GetObj()->getId()));
 								PrescribedTreatment* currentTreatment = static_cast<PrescribedTreatment*>(aux->GetObj());
 								this->app->getStore().getLastTreatments()->Push(currentTreatment);
-								totalPrice = totalPrice + currentTreatment->getPrice();
+								totalPrice = totalPrice + currentTreatment->getTotalPrice();
 								newStockQty = searchTreatment->getStockQuantity() - currentTreatment->getQuantity();
 								searchTreatment->setStockQuantity(newStockQty);
 								this->app->getStore().GetTreatments()->UpdateElementById(searchTreatment->getId(), searchTreatment);
@@ -413,7 +413,7 @@ namespace PetStore {
 							{
 								res = "Se Inserto la Medicacion de Mascota : ";
 								res.append(pet->getName());
-								this->viewer->Text = gcnew String((res.append(medication->ToString()).append(this->medicationList->ToString("prescribedTreatment"))).c_str());
+								this->viewer->Text = gcnew String((res.append(medication->ToString())).c_str());
 
 								if (!this->app->getStore().getInvoices()->HasInvoiceId(pet->getClientId()))
 								{

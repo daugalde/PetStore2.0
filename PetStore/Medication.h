@@ -48,6 +48,7 @@ public:
 		this->lastVisitMonth = lastVisitMonth;
 		this->lastVisitYear = lastVisitYear;
 		this->treatmentId = treatmentId;
+		this->quantity = quantity;
 		this->totalPrice = totalPrice;
 	}
 
@@ -136,6 +137,7 @@ public:
 			//"Cantidad Items: \t" + to_string(this->getQuantity()) + "\r\n" +
 			"Ultima Visita: \t" + to_string(this->getLastVisitDay()) + "/" + to_string(this->getLastVisitMonth()) + "/" + to_string(this->getLastVisitYear()) + "\r\n" +
 			//"Precio Unitario: \t" + formattedUnitPriceString + "\r\n" +
+			this->getTreatmentId()->ToString("prescribedTreatment") +
 			"Total Debido: \t" + formattedBalanceString + "\r\n" +
 			"\r\n");
 		return result;

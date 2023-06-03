@@ -142,13 +142,7 @@ namespace PetStore {
 		{
 			string res = this->app->getStore().getInvoices()->ToString("invoice");
 
-			if (res == "")
-			{
-				this->viewer->Text = "Solo se Genera Reportes de contado";
-			}
-			else {
-				this->viewer->Text = gcnew String((res).c_str());
-			}
+			this->viewer->Text = gcnew String((res).append("\r\n NOTA: Las facturas de contado son las que se genera en archivos\r\n").c_str());
 			
 		}
 		catch (...)

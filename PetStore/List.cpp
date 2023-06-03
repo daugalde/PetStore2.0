@@ -6,6 +6,8 @@
 #include "Treatment.h"
 #include "PrescribedTreatment.h"
 #include "Invoice.h"
+#include <iostream>
+#include <fstream> 
 
 using namespace std;
 
@@ -57,7 +59,7 @@ bool List::HasInvoiceId(int clientId) {
 		while (aux)
 		{
 			Invoice* invoice = static_cast<Invoice*>(aux->value);
-			if (invoice->getClient()->getId() == clientId && invoice->isPartialInvoice() )
+			if (invoice->getClient()->getId() == clientId && invoice->isPartialInvoice())
 			{
 				hasElement = true;
 				return hasElement;
@@ -675,6 +677,12 @@ string List::ToString(string type) {
 			{
 				Invoice* invoice = static_cast<Invoice*>(aux->value);
 				invoice->conciliateData();
+				if (invoice->getAppointment()->getPaymentType() == 1)
+				{
+					ofstream outfile(invoice->getName() + " Cliente Cedula " + to_string(invoice->getClient()->getId()) + ".txt");
+					outfile << invoice->ToString();
+				}
+				
 				result.append(invoice->ToString());
 
 			}

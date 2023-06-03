@@ -22,6 +22,7 @@ public:
 		this->client = NULL;
 		this->pet = NULL;
 		this->appointment = NULL;
+		this->medication = NULL;
 	}
 
 	Invoice(int id, Client* client, Pet* pet, Appointment* appointment) : Object(id, "Factura " + to_string(id)) {
@@ -29,6 +30,7 @@ public:
 		this->client = client;
 		this->pet = pet;
 		this->appointment = appointment;
+		this->medication = NULL;
 		/*this->price = price;
 		this->qty = qty;*/
 	}
@@ -71,7 +73,7 @@ public:
 
 	bool isPartialInvoice() {
 		return (this->client != NULL || this->appointment != NULL || this->pet != NULL || medication != NULL) && 
-			   (this->client != NULL && this->appointment != NULL && this->pet != NULL && medication != NULL);
+			   !(this->client != NULL && this->appointment != NULL && this->pet != NULL && medication != NULL);
 	}
 
 	bool canEmitInvoice() {
@@ -94,20 +96,28 @@ public:
 	};*/
 
 	void conciliateData() {
-		if (canEmitInvoice())
+		try
 		{
-			this->getClient()->setDay(this->getAppointment()->getDay());
-			this->getClient()->setMonth(this->getAppointment()->getMonth());
-			this->getClient()->setYear(this->getAppointment()->getYear());
-			this->getMedication()->setLastVisitDay(stoi(this->getAppointment()->getDay()));
-			this->getMedication()->setLastVisitMonth(stoi(this->getAppointment()->getMonth()));
-			this->getMedication()->setLastVisitYear(stoi(this->getAppointment()->getYear()));
-			this->getPet()->setLastVisitDay((this->getAppointment()->getDay()));
-			this->getPet()->setLastVisitMonth((this->getAppointment()->getMonth()));
-			this->getPet()->setLastVisitYear((this->getAppointment()->getYear()));
-			this->getClient()->setTotalInvoiced(this->medication->getTotalPrice());
-			this->getAppointment()->setTotalInvoiced(this->medication->getTotalPrice());
+			if (canEmitInvoice())
+			{
+				this->getClient()->setDay(this->getAppointment()->getDay());
+				this->getClient()->setMonth(this->getAppointment()->getMonth());
+				this->getClient()->setYear(this->getAppointment()->getYear());
+				this->getMedication()->setLastVisitDay(stoi(this->getAppointment()->getDay()));
+				this->getMedication()->setLastVisitMonth(stoi(this->getAppointment()->getMonth()));
+				this->getMedication()->setLastVisitYear(stoi(this->getAppointment()->getYear()));
+				this->getPet()->setLastVisitDay((this->getAppointment()->getDay()));
+				this->getPet()->setLastVisitMonth((this->getAppointment()->getMonth()));
+				this->getPet()->setLastVisitYear((this->getAppointment()->getYear()));
+				this->getClient()->setBalance(this->medication->getTotalPrice());
+				this->getAppointment()->setTotalInvoiced(this->medication->getTotalPrice());
+			}
 		}
+		catch (...)
+		{
+				
+		}
+		
 	}
 
 	string ToString() {
@@ -122,11 +132,8 @@ public:
 			"Cantidad Disponible Stock :\t" + to_string(this->getStockQuantity()) + "\r\n" +
 			"Precio Unitario: \t" + formattedBalanceString + "\r\n" +
 			"\r\n");*/
-		if (isValidToCreateInvoice())
-		{
-			return "";
-		}
-		return "Cliente :\r\n" + client->ToString() + "\r\nMascota:\r\n" + pet->ToString() + "\r\n con Vista \r\n" + appointment->ToString() + "\r\nSe le envio la Medicacion\r\n" + medication->ToString();
+
+		return "Factura :\t" + to_string(this->getId()) + "\r\n" + "Cliente :\r\n" + client->ToString() + "\r\nMascota:\r\n" + pet->ToString() + "\r\n con Vista \r\n" + appointment->ToString() + "\r\nSe le envio la Medicacion\r\n" + medication->ToString();
 	}
 
 	friend class List;

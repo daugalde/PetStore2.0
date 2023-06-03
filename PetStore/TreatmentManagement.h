@@ -1,5 +1,6 @@
 #pragma once
 #include "Treatment.h"
+#include "PrescribedTreatment.h"
 
 namespace PetStore {
 

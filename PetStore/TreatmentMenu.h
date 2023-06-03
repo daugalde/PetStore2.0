@@ -185,7 +185,7 @@ namespace PetStore {
 				Treatment* treatment = static_cast<Treatment*>(this->app->getStore().GetTreatments()->SearchById(treatmentId));
 				if (treatment != NULL && treatment->getStockQuantity() > qty)
 				{
-					Treatment* newTreatment = new Treatment(treatmentId, treatment->getName(), treatment->getPrice() * qty, qty);
+					PrescribedTreatment* newTreatment = new PrescribedTreatment(treatmentId, treatment->getName(), treatment->getPrice(), qty, (treatment->getPrice() * qty));
 					this->medList->Push(newTreatment);
 					String^ s = gcnew String((newTreatment->ToString()).c_str());
 					MessageBox::Show(s, "Tratamiento Agregado", MessageBoxButtons::OK);
