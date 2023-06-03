@@ -48,7 +48,7 @@ bool List::UpdateTreatmentCount(int id) {
 	return hasElement;
 }
 
-bool List::HasInvoiceId(int id) {
+bool List::HasInvoiceId(int clientId) {
 	bool hasElement = false;
 
 	Node* aux;
@@ -56,7 +56,8 @@ bool List::HasInvoiceId(int id) {
 		aux = head;
 		while (aux)
 		{
-			if (aux->value->getId() == id)
+			Invoice* invoice = static_cast<Invoice*>(aux->value);
+			if (invoice->getClient()->getId() == clientId && invoice->isPartialInvoice() )
 			{
 				hasElement = true;
 				return hasElement;
@@ -561,7 +562,8 @@ Object* List::GetObjectById(int id) {
 		aux = head;
 		while (aux)
 		{
-			if (aux->value->getId() == id)
+			Invoice* invoice = static_cast<Invoice*>(aux->value);
+			if (invoice->getClient()->getId() == id && invoice->isPartialInvoice())
 			{
 				return aux->value;
 			}

@@ -420,7 +420,7 @@ namespace PetStore {
 									Client* client = static_cast<Client*>(this->app->getStore().GetClients()->SearchById(pet->getClientId(), this->app->getStore().GetClients()->GetRoot()));
 									if (client != NULL)
 									{
-										invoice = new Invoice(pet->getClientId(), client, pet, appointment);
+										invoice = new Invoice(this->app->getStore().getInvoices()->Length() + 1, client, pet, appointment);
 										invoice->setMedication(medication);
 										this->app->getStore().getInvoices()->Push(invoice);
 									}
@@ -428,8 +428,11 @@ namespace PetStore {
 								else {
 									
 									invoice = static_cast<Invoice*>(this->app->getStore().getInvoices()->GetObjectById(pet->getClientId()));
-									invoice->setMedication(medication);
-									this->app->getStore().getInvoices()->UpdateObject(invoice);
+									if (invoice != NULL)
+									{
+										invoice->setMedication(medication);
+										this->app->getStore().getInvoices()->UpdateObject(invoice);
+									}
 								}
 							}
 							else {

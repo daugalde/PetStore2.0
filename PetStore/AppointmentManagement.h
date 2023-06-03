@@ -64,7 +64,7 @@ namespace PetStore {
 				this->titleLbl->Text = "Insertar Visita";
 				this->labelId1->Text = "Id de Visita";
 				this->labelId2->Text = "Id de Mascota";
-				
+
 				this->labelName1->Text = "Anio de visita";
 				this->labelName2->Text = "Mes  de visita";
 				this->labelName3->Text = "Dia  de visita";
@@ -401,14 +401,17 @@ namespace PetStore {
 							{
 								if (client != NULL)
 								{
-									invoice = new Invoice(client->getId(), client, pet, appointment);
+									invoice = new Invoice(this->app->getStore().getInvoices()->Length() + 1, client, pet, appointment);
 									this->app->getStore().getInvoices()->Push(invoice);
 								}
 							}
 							else {
 								invoice = static_cast<Invoice*>(this->app->getStore().getInvoices()->GetObjectById(pet->getClientId()));
-								invoice->setAppointment(appointment);
-								this->app->getStore().getInvoices()->UpdateObject(invoice);
+								if (invoice != NULL)
+								{
+									invoice->setAppointment(appointment);
+									this->app->getStore().getInvoices()->UpdateObject(invoice);
+								}
 							}
 
 							this->viewer->Text = gcnew String((res.append(appointment->ToString())).c_str());
@@ -453,7 +456,7 @@ namespace PetStore {
 						client = static_cast<Client*>(this->app->getStore().GetClients()->SearchById(pet->getClientId(), this->app->getStore().GetClients()->GetRoot()));
 
 						res = "Se Encontro la Mascota del Cliente: ";
-						res.append(client->getName()+ "\n\r" );
+						res.append(client->getName() + "\n\r");
 						res.append("\n\rDe la Mascota " + pet->getName() + " Con ");
 						this->viewer->Text = gcnew String((res.append(appointment->ToString())).c_str());
 					}
@@ -513,5 +516,5 @@ namespace PetStore {
 			break;
 		}
 	}
-};
+	};
 }

@@ -96,6 +96,7 @@ namespace PetStore {
 			this->viewer->Location = System::Drawing::Point(560, 297);
 			this->viewer->Multiline = true;
 			this->viewer->Name = L"viewer";
+			this->viewer->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->viewer->Size = System::Drawing::Size(774, 564);
 			this->viewer->TabIndex = 78;
 			// 
@@ -137,9 +138,24 @@ namespace PetStore {
 		this->obj->Show();
 	}
 	private: System::Void actionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		string res = this->app->getStore().getInvoices()->ToString("invoice");
+		try
+		{
+			string res = this->app->getStore().getInvoices()->ToString("invoice");
 
-		this->viewer->Text = gcnew String((res).c_str());
+			if (res == "")
+			{
+				this->viewer->Text = "Solo se Genera Reportes de contado";
+			}
+			else {
+				this->viewer->Text = gcnew String((res).c_str());
+			}
+			
+		}
+		catch (...)
+		{
+			this->viewer->Text = "Reportes Disponibles Generados";
+		}
+		
 	}
 };
 }

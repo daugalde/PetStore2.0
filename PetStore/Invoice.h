@@ -66,6 +66,15 @@ public:
 	}
 
 	bool isValidToCreateInvoice() {
+		return this->client == NULL && this->appointment == NULL && this->pet == NULL && medication == NULL;
+	}
+
+	bool isPartialInvoice() {
+		return (this->client != NULL || this->appointment != NULL || this->pet != NULL || medication != NULL) && 
+			   (this->client != NULL && this->appointment != NULL && this->pet != NULL && medication != NULL);
+	}
+
+	bool canEmitInvoice() {
 		return this->client != NULL && this->appointment != NULL && this->pet != NULL && medication != NULL;
 	}
 	/*float getPrice() {
@@ -85,7 +94,20 @@ public:
 	};*/
 
 	void conciliateData() {
-
+		if (canEmitInvoice())
+		{
+			this->getClient()->setDay(this->getAppointment()->getDay());
+			this->getClient()->setMonth(this->getAppointment()->getMonth());
+			this->getClient()->setYear(this->getAppointment()->getYear());
+			this->getMedication()->setLastVisitDay(stoi(this->getAppointment()->getDay()));
+			this->getMedication()->setLastVisitMonth(stoi(this->getAppointment()->getMonth()));
+			this->getMedication()->setLastVisitYear(stoi(this->getAppointment()->getYear()));
+			this->getPet()->setLastVisitDay((this->getAppointment()->getDay()));
+			this->getPet()->setLastVisitMonth((this->getAppointment()->getMonth()));
+			this->getPet()->setLastVisitYear((this->getAppointment()->getYear()));
+			this->getClient()->setTotalInvoiced(this->medication->getTotalPrice());
+			this->getAppointment()->setTotalInvoiced(this->medication->getTotalPrice());
+		}
 	}
 
 	string ToString() {
@@ -100,6 +122,10 @@ public:
 			"Cantidad Disponible Stock :\t" + to_string(this->getStockQuantity()) + "\r\n" +
 			"Precio Unitario: \t" + formattedBalanceString + "\r\n" +
 			"\r\n");*/
+		if (isValidToCreateInvoice())
+		{
+			return "";
+		}
 		return "Cliente :\r\n" + client->ToString() + "\r\nMascota:\r\n" + pet->ToString() + "\r\n con Vista \r\n" + appointment->ToString() + "\r\nSe le envio la Medicacion\r\n" + medication->ToString();
 	}
 
