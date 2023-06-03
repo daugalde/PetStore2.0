@@ -17,13 +17,14 @@ private:
 	RBTree* treatments;
 	BinaryTree* medication;
 	List* lastTreatments;
-
+	List* clientWithGreatestInvoices;
 public:
 
 	Store() {
 		invoices = new List();
 		hotItems = new List();
 		lastTreatments = new List();
+		clientWithGreatestInvoices = new List();
 	}
 
 	BinaryTree* GetCountries() {
@@ -80,6 +81,14 @@ public:
 
 	void setInvoices(List* invoices) {
 		this->invoices = invoices;
+	};
+
+	List* getClientWithGreatestInvoices() {
+		return clientWithGreatestInvoices;
+	};
+
+	void setClientWithGreatestInvoices(List* cgi) {
+		this->clientWithGreatestInvoices = cgi;
 	};
 
 	List* getLastTreatments() {

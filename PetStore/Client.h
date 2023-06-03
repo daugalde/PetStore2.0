@@ -20,6 +20,8 @@ private:
 	float totalInvoiced = 0.0;
 	int discount = 0;
 	float balance = 0.0;
+	float totalDiscounted = 0.0;
+	float totalDue = 0.0;
 
 public:  // Constructors
 
@@ -108,6 +110,22 @@ public:  // Constructors
 
 	void setBalance(float balance) {
 		this->balance = balance;
+	};
+
+	float getTotalDiscounted() {
+		return this->totalDiscounted;
+	};
+
+	void setTotalDiscounted(float totalDiscounted) {
+		this->totalDiscounted = totalDiscounted;
+	};
+
+	float getTotalDue() {
+		return this->totalDue;
+	};
+
+	void setTotalDue(float totalDue) {
+		this->totalDue = totalDue;
 	};
 
 	List* getGroceryItems() {

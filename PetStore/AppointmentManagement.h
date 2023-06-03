@@ -403,6 +403,16 @@ namespace PetStore {
 								{
 									invoice = new Invoice(this->app->getStore().getInvoices()->Length() + 1, client, pet, appointment);
 									this->app->getStore().getInvoices()->Push(invoice);
+
+									if (!this->app->getStore().getClientWithGreatestInvoices()->ExistsElement(client->getId()))
+									{
+										client->setVisits(client->getVisits() + 1);
+										this->app->getStore().getClientWithGreatestInvoices()->Push(client);
+									}
+									else {
+										client->setVisits(client->getVisits() + 1);
+										this->app->getStore().getClientWithGreatestInvoices()->UpdateObject(client);
+									}
 								}
 							}
 							else {

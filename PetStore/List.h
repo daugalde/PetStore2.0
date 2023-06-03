@@ -19,7 +19,7 @@ public:
 
 	bool HasInvoiceId(int id);
 
-	bool HasProductMakeId(int id);
+	bool ExistsElement(int id);
 
 	int Length();
 

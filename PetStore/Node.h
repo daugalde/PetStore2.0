@@ -41,5 +41,6 @@ public:  // Constructors
 	friend class Object;
 	friend class Places;
 	friend class MedicationManagement;
+	friend class Appointment;
 };
 typedef Node* PointerNode; //Alias

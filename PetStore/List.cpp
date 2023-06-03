@@ -70,23 +70,22 @@ bool List::HasInvoiceId(int clientId) {
 	return hasElement;
 }
 
-bool List::HasProductMakeId(int id) {
+bool List::ExistsElement(int id) {
 	bool hasElement = false;
 
-	/*Node* aux;
+	Node* aux;
 	if (head != NULL) {
 		aux = head;
 		while (aux)
 		{
-			Product* product = static_cast<Product*>(aux->value);
-			if (product != NULL && product->getMakeId() == id)
+			if (aux->GetObj()->getId() == id)
 			{
 				hasElement = true;
 				return hasElement;
 			}
 			aux = aux->NextNode;
 		}
-	}*/
+	}
 	return hasElement;
 }
 
@@ -651,7 +650,8 @@ string List::ToString(string type) {
 	Node* aux;
 	string result;
 	if (head != NULL) {
-		bool onlyShowOnce = true;
+		float sum = 0.0;
+		int visits = 0;
 		aux = head;
 		while (aux)
 		{
@@ -673,17 +673,48 @@ string List::ToString(string type) {
 				result.append(treatment->ToString());
 
 			}
+			else if (type == "greaterBalance") {
+				Client* client = static_cast<Client*>(aux->value);
+				if (client->getBalance() > sum)
+				{
+					result = client->ToString();
+					sum = client->getBalance();
+				}
+			}
+			else if (type == "greaterCredit") {
+				Client* client = static_cast<Client*>(aux->value);
+				if (client->getTotalDue() > sum)
+				{
+					result = client->ToString();
+					sum = client->getTotalDue();
+				}
+			}
+			else if (type == "greaterDiscount") {
+				Client* client = static_cast<Client*>(aux->value);
+				if (client->getDiscount() > sum)
+				{
+					result = client->ToString();
+				}
+			}
+			else if (type == "visits") {
+				Client* client = static_cast<Client*>(aux->value);
+				if (client->getVisits() > visits)
+				{
+					result = client->ToString();
+				}
+			}
 			else if (type == "invoice")
 			{
 				Invoice* invoice = static_cast<Invoice*>(aux->value);
 				invoice->conciliateData();
+				string resultToString = invoice->ToString();
 				if (invoice->getAppointment()->getPaymentType() == 1)
 				{
 					ofstream outfile(invoice->getName() + " Cliente Cedula " + to_string(invoice->getClient()->getId()) + ".txt");
-					outfile << invoice->ToString();
+					outfile << resultToString;
 				}
 				
-				result.append(invoice->ToString());
+				result.append(resultToString);
 
 			}
 			aux = aux->NextNode;

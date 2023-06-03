@@ -68,4 +68,5 @@ public:
 	friend class Node;
 	friend class List;
 	friend class Places;
+	friend class Appointment;
 };

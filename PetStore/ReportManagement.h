@@ -46,6 +46,7 @@ namespace PetStore {
 			this->comboBox1->Items->Add("Cliente con mas Descuento");
 			this->comboBox1->Items->Add("Ultimos Tratamientos");
 			this->comboBox1->Items->Add("Tratamientos mas utilizado");
+			this->comboBox1->Items->Add("Clientes Con Mas Facturas");
 		}
 
 	protected:
@@ -298,22 +299,32 @@ namespace PetStore {
 				break;
 			case 7:
 				res = "Clientes con mas Saldo\r\n\r\n";
-				this->app->getStore().GetClients()->GetClientReport(this->app->getStore().GetClients()->GetRoot(), "greaterBalance", res, sum);
+				res.append(this->app->getStore().getClientWithGreatestInvoices()->ToString("greaterBalance"));
 				this->viewer->Text = gcnew String(res.c_str());
 				break;
 			case 8:
 				res = "Clientes con mas credito\r\n\r\n";
-				this->app->getStore().GetClients()->GetClientReport(this->app->getStore().GetClients()->GetRoot(), "greaterCredit", res, sum);
+				res.append(this->app->getStore().getClientWithGreatestInvoices()->ToString("greaterCredit"));
 				this->viewer->Text = gcnew String(res.c_str());
 				break;
 			case 9:
 				res = "Clientes con mas descuento\r\n\r\n";
-				this->app->getStore().GetClients()->GetClientReport(this->app->getStore().GetClients()->GetRoot(), "greaterDiscount", res, sum);
+				res.append(this->app->getStore().getClientWithGreatestInvoices()->ToString("greaterDiscount"));
 				this->viewer->Text = gcnew String(res.c_str());
 				break;
 			case 10:
 				res = "El Ultimos Tratamientos Encontrados\r\n\r\n";
 				res.append(this->app->getStore().getLastTreatments()->ToString("prescribedTreatment"));
+				this->viewer->Text = gcnew String(res.c_str());
+				break;
+			case 11:
+				res = "Tratamientos mas utilizado\r\n\r\n";
+				res.append(this->app->getStore().getHotItems()->ToString("hotItems"));
+				this->viewer->Text = gcnew String(res.c_str());
+				break;
+			case 12:
+				res = "Clientes con mas Facturas\r\n\r\n";
+				res.append(this->app->getStore().getClientWithGreatestInvoices()->ToString("visits"));
 				this->viewer->Text = gcnew String(res.c_str());
 				break;
 			default:

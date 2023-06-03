@@ -14,6 +14,8 @@ private:
 	Pet* pet;
 	Appointment* appointment;
 	Medication* medication;
+	bool hasDiscount = false;
+	bool isSetDiscount = false;
 
 public:
 
@@ -79,27 +81,54 @@ public:
 	bool canEmitInvoice() {
 		return this->client != NULL && this->appointment != NULL && this->pet != NULL && medication != NULL;
 	}
-	/*float getPrice() {
-		return this->price;
-	};
+	float getDiscountPrice() {
 
-	void setPrice(float price) {
-		this->price = price;
-	};
+		float discountAdded = 0.0;
 
-	int getStockQuantity() {
-		return this->qty;
-	};
+		if (!isSetDiscount && appointment->getPaymentType() == 1) {
+			if (this->medication->getTotalPrice() < 100000)
+			{
+				discountAdded = (float)(this->medication->getTotalPrice() * 1.03);
 
-	void setStockQuantity(int qty) {
-		this->qty = qty;
-	};*/
+				this->medication->setTotalPrice(this->medication->getTotalPrice() / 1.03);
+				
+				client->setDiscount(discountAdded);
+
+				hasDiscount = true;
+			}
+			else if (this->medication->getTotalPrice() == 100000)
+			{
+				discountAdded = (float)(this->medication->getTotalPrice() * 1.05);
+
+				this->medication->setTotalPrice(this->medication->getTotalPrice() / 1.05);
+
+				client->setDiscount(discountAdded);
+
+				hasDiscount = true;
+			}
+			else if (this->medication->getTotalPrice() >= 101000 && this->medication->getTotalPrice() <= 150000)
+			{
+				discountAdded = (float)(this->medication->getTotalPrice() * 1.10);
+
+				this->medication->setTotalPrice(this->medication->getTotalPrice() / 1.10);
+
+				client->setDiscount(discountAdded);
+
+				hasDiscount = true;
+			}
+
+			isSetDiscount = true;
+		}
+		
+		return this->medication->getTotalPrice();
+	}
 
 	void conciliateData() {
 		try
 		{
 			if (canEmitInvoice())
 			{
+				getDiscountPrice();
 				this->getClient()->setDay(this->getAppointment()->getDay());
 				this->getClient()->setMonth(this->getAppointment()->getMonth());
 				this->getClient()->setYear(this->getAppointment()->getYear());
@@ -111,6 +140,11 @@ public:
 				this->getPet()->setLastVisitYear((this->getAppointment()->getYear()));
 				this->getClient()->setBalance(this->medication->getTotalPrice());
 				this->getAppointment()->setTotalInvoiced(this->medication->getTotalPrice());
+				if (this->getAppointment()->getPaymentType() == 2)
+				{
+					client->setTotalDue(this->medication->getTotalPrice());
+					
+				}
 			}
 		}
 		catch (...)
@@ -121,19 +155,17 @@ public:
 	}
 
 	string ToString() {
-		/*string result = "";
-		string formattedBalanceString = std::to_string(this->getPrice());
-		size_t decimalPos = formattedBalanceString.find('.');
-		if (decimalPos != string::npos && decimalPos + 3 < formattedBalanceString.length()) {
-			formattedBalanceString = formattedBalanceString.substr(0, decimalPos + 3);
-		}
-		result.append("\r\nId Tratamiento :\t" + to_string(this->getId()) + "\r\n" +
-			"Nombre Tratamiento :\t" + this->getName() + "\r\n" +
-			"Cantidad Disponible Stock :\t" + to_string(this->getStockQuantity()) + "\r\n" +
-			"Precio Unitario: \t" + formattedBalanceString + "\r\n" +
-			"\r\n");*/
 
-		return "Factura :\t" + to_string(this->getId()) + "\r\n" + "Cliente :\r\n" + client->ToString() + "\r\nMascota:\r\n" + pet->ToString() + "\r\n con Vista \r\n" + appointment->ToString() + "\r\nSe le envio la Medicacion\r\n" + medication->ToString();
+		string result =  "Factura :\t" + to_string(this->getId()) + "\r\n" +
+			"Cliente :\r\n" + client->ToString() +
+			"\r\nMascota:\r\n" + pet->ToString() +
+			"\r\n con Vista \r\n" + appointment->ToString() +
+			"\r\nSe le envio la Medicacion\r\n" + medication->ToString();
+		if (hasDiscount)
+		{
+			result.append("\r\nTiene Descuento Aplicado \r\n");
+		}
+		return result;
 	}
 
 	friend class List;

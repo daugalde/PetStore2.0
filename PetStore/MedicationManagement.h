@@ -423,6 +423,21 @@ namespace PetStore {
 										invoice = new Invoice(this->app->getStore().getInvoices()->Length() + 1, client, pet, appointment);
 										invoice->setMedication(medication);
 										this->app->getStore().getInvoices()->Push(invoice);
+
+										PointerNode hotItems = this->medicationList->GetHead();
+										while (hotItems) {
+											if (!this->app->getStore().getHotItems()->ExistsElement(hotItems->GetObj()->getId()))
+											{
+												hotItems->GetObj()->setVisits(1);
+												this->app->getStore().getHotItems()->Push(hotItems->GetObj());
+											}
+											else {
+												hotItems->GetObj()->setVisits(hotItems->GetObj()->getVisits() + 1);
+												this->app->getStore().getHotItems()->UpdateObject(hotItems->GetObj());
+											}
+											hotItems = hotItems->GetNextNode();
+										}
+										
 									}
 								}
 								else {
