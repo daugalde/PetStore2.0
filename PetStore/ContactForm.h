@@ -44,6 +44,7 @@ namespace PetStore {
 				this->labelId1->Text = "Nombre Cliente";
 				this->labelName1->Text = "Correo ";
 				this->labelId2->Text = "Telefono";
+				this->dogLabel->Hide();
 				break;
 			case DISPLAY_ACTION:
 				this->actionBtn->Text = "Mostrar Contactos";
@@ -54,6 +55,7 @@ namespace PetStore {
 				this->nameTextBox1->Hide();
 				this->idTextBox1->Hide();
 				this->idTextBox2->Hide();
+				this->dogLabel->Show();
 				break;
 			default:
 				break;
@@ -75,8 +77,8 @@ namespace PetStore {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Label^ dogLabel;
 	private: System::Windows::Forms::Label^ labelId2;
-	protected:
 	private: System::Windows::Forms::TextBox^ idTextBox2;
 	private: System::Windows::Forms::TextBox^ nameTextBox1;
 	private: System::Windows::Forms::TextBox^ idTextBox1;
@@ -100,6 +102,7 @@ namespace PetStore {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ContactForm::typeid));
 			this->labelId2 = (gcnew System::Windows::Forms::Label());
 			this->idTextBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->nameTextBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -110,6 +113,7 @@ namespace PetStore {
 			this->resultLbl = (gcnew System::Windows::Forms::Label());
 			this->viewer = (gcnew System::Windows::Forms::TextBox());
 			this->titleLbl = (gcnew System::Windows::Forms::Label());
+			this->dogLabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// labelId2
@@ -195,12 +199,28 @@ namespace PetStore {
 			// 
 			this->titleLbl->AutoSize = true;
 			this->titleLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.875F));
-			this->titleLbl->Location = System::Drawing::Point(1191, 47);
+			this->titleLbl->Location = System::Drawing::Point(815, 40);
 			this->titleLbl->Name = L"titleLbl";
 			this->titleLbl->Size = System::Drawing::Size(83, 39);
 			this->titleLbl->TabIndex = 47;
 			this->titleLbl->Text = L"Title";
 			this->titleLbl->UseMnemonic = false;
+			// 
+			// dogLabel
+			// 
+			this->dogLabel->AutoSize = true;
+			this->dogLabel->BackColor = System::Drawing::SystemColors::HighlightText;
+			this->dogLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.875F));
+			this->dogLabel->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"dogLabel.Image")));
+			this->dogLabel->Location = System::Drawing::Point(265, 297);
+			this->dogLabel->Margin = System::Windows::Forms::Padding(0);
+			this->dogLabel->MaximumSize = System::Drawing::Size(500, 500);
+			this->dogLabel->MinimumSize = System::Drawing::Size(500, 500);
+			this->dogLabel->Name = L"dogLabel";
+			this->dogLabel->Size = System::Drawing::Size(500, 500);
+			this->dogLabel->TabIndex = 87;
+			this->dogLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->dogLabel->Visible = false;
 			// 
 			// ContactForm
 			// 
@@ -208,6 +228,7 @@ namespace PetStore {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::MenuHighlight;
 			this->ClientSize = System::Drawing::Size(1894, 1009);
+			this->Controls->Add(this->dogLabel);
 			this->Controls->Add(this->labelId2);
 			this->Controls->Add(this->idTextBox2);
 			this->Controls->Add(this->nameTextBox1);
