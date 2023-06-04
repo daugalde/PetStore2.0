@@ -6,6 +6,7 @@ const int INSERT_ACTION = 1;
 const int SEARCH_ACTION = 2;
 const int UPDATE_ACTION = 3;
 const int DELETE_ACTION = 4;
+const int DISPLAY_ACTION = 4;
 
 const int COUNTRY_TYPE = 1;
 const int CITY_TYPE = 2;

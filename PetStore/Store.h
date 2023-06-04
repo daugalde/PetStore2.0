@@ -18,6 +18,7 @@ private:
 	BinaryTree* medication;
 	List* lastTreatments;
 	List* clientWithGreatestInvoices;
+	List* contacts;
 public:
 
 	Store() {
@@ -25,6 +26,7 @@ public:
 		hotItems = new List();
 		lastTreatments = new List();
 		clientWithGreatestInvoices = new List();
+		contacts = new List();
 	}
 
 	BinaryTree* GetCountries() {
@@ -105,6 +107,14 @@ public:
 
 	void setHotItems(List* hotItems) {
 		this->hotItems = hotItems;
+	};
+
+	List* getContacts() {
+		return contacts;
+	};
+
+	void setContacts(List* contacts) {
+		this->contacts = contacts;
 	};
 
 	BinaryTree* GetClients() {

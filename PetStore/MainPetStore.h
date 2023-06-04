@@ -10,6 +10,7 @@
 #include "ReportManagement.h"
 #include "InvoiceManagement.h"
 #include "About.h"
+#include "ContactForm.h"
 
 namespace PetStore {
 
@@ -82,7 +83,7 @@ namespace PetStore {
 	private: System::Windows::Forms::ToolStripMenuItem^ searchCityToolStripMenuItem;
 
 
-	private: System::Windows::Forms::ToolStripMenuItem^ sucursalesToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ acercaDeToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ contactoToolStripMenuItem;
 	private: System::Windows::Forms::Button^ branchBtn;
@@ -146,7 +147,9 @@ namespace PetStore {
 	private: System::Windows::Forms::ToolStripMenuItem^ visitasToolStripMenuItem4;
 	private: System::Windows::Forms::ToolStripMenuItem^ tratamientoToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ medicacionToolStripMenuItem2;
-private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ formularioContactoToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ mostrarContactosToolStripMenuItem;
 
 
 
@@ -241,9 +244,11 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 			this->descuentosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->facturarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip = (gcnew System::Windows::Forms::MenuStrip());
-			this->sucursalesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->acercaDeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contactoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->formularioContactoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->mostrarContactosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->branchBtn = (gcnew System::Windows::Forms::Button());
 			this->customerContextMenuStrip = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->clientesToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -273,7 +278,6 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 			this->facturacionToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->descuentoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saldoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->countryContextMenuStrip->SuspendLayout();
 			this->menuStrip->SuspendLayout();
 			this->customerContextMenuStrip->SuspendLayout();
@@ -436,7 +440,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 					this->buscarToolStripMenuItem, this->eliminarToolStripMenuItem4, this->modficarToolStripMenuItem
 			});
 			this->mantenimientoToolStripMenuItem->Name = L"mantenimientoToolStripMenuItem";
-			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(199, 36);
+			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(199, 38);
 			this->mantenimientoToolStripMenuItem->Text = L"Mantenimiento";
 			// 
 			// insertarToolStripMenuItem
@@ -661,7 +665,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 			// 
 			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->paisToolStripMenuItem2 });
 			this->reportesToolStripMenuItem->Name = L"reportesToolStripMenuItem";
-			this->reportesToolStripMenuItem->Size = System::Drawing::Size(127, 36);
+			this->reportesToolStripMenuItem->Size = System::Drawing::Size(127, 38);
 			this->reportesToolStripMenuItem->Text = L"Reportes";
 			// 
 			// paisToolStripMenuItem2
@@ -678,7 +682,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 					this->descuentosToolStripMenuItem, this->facturarToolStripMenuItem
 			});
 			this->facturacionToolStripMenuItem->Name = L"facturacionToolStripMenuItem";
-			this->facturacionToolStripMenuItem->Size = System::Drawing::Size(155, 36);
+			this->facturacionToolStripMenuItem->Size = System::Drawing::Size(155, 38);
 			this->facturacionToolStripMenuItem->Text = L"Facturacion";
 			// 
 			// saldosToolStripMenuItem
@@ -703,22 +707,15 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 			// 
 			this->menuStrip->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
 			this->menuStrip->ImageScalingSize = System::Drawing::Size(32, 32);
-			this->menuStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
+			this->menuStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->mantenimientoToolStripMenuItem,
-					this->reportesToolStripMenuItem, this->facturacionToolStripMenuItem, this->sucursalesToolStripMenuItem, this->acercaDeToolStripMenuItem,
-					this->contactoToolStripMenuItem
+					this->reportesToolStripMenuItem, this->facturacionToolStripMenuItem, this->acercaDeToolStripMenuItem, this->contactoToolStripMenuItem
 			});
 			this->menuStrip->Location = System::Drawing::Point(0, 0);
 			this->menuStrip->Name = L"menuStrip";
 			this->menuStrip->Size = System::Drawing::Size(1894, 42);
 			this->menuStrip->TabIndex = 4;
 			this->menuStrip->Text = L"menuStrip1";
-			// 
-			// sucursalesToolStripMenuItem
-			// 
-			this->sucursalesToolStripMenuItem->Name = L"sucursalesToolStripMenuItem";
-			this->sucursalesToolStripMenuItem->Size = System::Drawing::Size(145, 36);
-			this->sucursalesToolStripMenuItem->Text = L"Sucursales";
 			// 
 			// acercaDeToolStripMenuItem
 			// 
@@ -727,11 +724,36 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 			this->acercaDeToolStripMenuItem->Size = System::Drawing::Size(138, 38);
 			this->acercaDeToolStripMenuItem->Text = L"Acerca de";
 			// 
+			// acercaToolStripMenuItem
+			// 
+			this->acercaToolStripMenuItem->Name = L"acercaToolStripMenuItem";
+			this->acercaToolStripMenuItem->Size = System::Drawing::Size(217, 44);
+			this->acercaToolStripMenuItem->Text = L"Acerca";
+			this->acercaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainPetStore::acercaToolStripMenuItem_Click);
+			// 
 			// contactoToolStripMenuItem
 			// 
+			this->contactoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->formularioContactoToolStripMenuItem,
+					this->mostrarContactosToolStripMenuItem
+			});
 			this->contactoToolStripMenuItem->Name = L"contactoToolStripMenuItem";
-			this->contactoToolStripMenuItem->Size = System::Drawing::Size(130, 36);
+			this->contactoToolStripMenuItem->Size = System::Drawing::Size(130, 38);
 			this->contactoToolStripMenuItem->Text = L"Contacto";
+			// 
+			// formularioContactoToolStripMenuItem
+			// 
+			this->formularioContactoToolStripMenuItem->Name = L"formularioContactoToolStripMenuItem";
+			this->formularioContactoToolStripMenuItem->Size = System::Drawing::Size(365, 44);
+			this->formularioContactoToolStripMenuItem->Text = L"Formulario Contacto";
+			this->formularioContactoToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainPetStore::formularioContactoToolStripMenuItem_Click);
+			// 
+			// mostrarContactosToolStripMenuItem
+			// 
+			this->mostrarContactosToolStripMenuItem->Name = L"mostrarContactosToolStripMenuItem";
+			this->mostrarContactosToolStripMenuItem->Size = System::Drawing::Size(365, 44);
+			this->mostrarContactosToolStripMenuItem->Text = L"Mostrar Contactos";
+			this->mostrarContactosToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainPetStore::mostrarContactosToolStripMenuItem_Click);
 			// 
 			// branchBtn
 			// 
@@ -972,13 +994,6 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 			this->saldoToolStripMenuItem->Name = L"saldoToolStripMenuItem";
 			this->saldoToolStripMenuItem->Size = System::Drawing::Size(225, 40);
 			this->saldoToolStripMenuItem->Text = L"Saldo";
-			// 
-			// acercaToolStripMenuItem
-			// 
-			this->acercaToolStripMenuItem->Name = L"acercaToolStripMenuItem";
-			this->acercaToolStripMenuItem->Size = System::Drawing::Size(359, 44);
-			this->acercaToolStripMenuItem->Text = L"Acerca";
-			this->acercaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainPetStore::acercaToolStripMenuItem_Click);
 			// 
 			// MainPetStore
 			// 
@@ -1294,6 +1309,16 @@ private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 		this->Hide();
 		About^ aboutWindow = gcnew About(this, this->app);
 		aboutWindow->ShowDialog();
+	}
+	private: System::Void formularioContactoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ContactForm^ contactWindow = gcnew ContactForm(this, this->app, INSERT_ACTION);
+		contactWindow->ShowDialog();
+	}
+	private: System::Void mostrarContactosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		ContactForm^ contactWindow = gcnew ContactForm(this, this->app, DISPLAY_ACTION);
+		contactWindow->ShowDialog();
 	}
 };
 }

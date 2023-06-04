@@ -8,6 +8,7 @@
 #include "Invoice.h"
 #include <iostream>
 #include <fstream> 
+#include "Contact.h"
 
 using namespace std;
 
@@ -716,6 +717,10 @@ string List::ToString(string type) {
 				
 				result.append(resultToString);
 
+			}
+			else if (type == "contact") {
+				Contact* contact = static_cast<Contact*>(aux->value);
+				result.append(contact->ToString());
 			}
 			aux = aux->NextNode;
 		}
