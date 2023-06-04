@@ -9,6 +9,7 @@
 #include "MedicationManagement.h"
 #include "ReportManagement.h"
 #include "InvoiceManagement.h"
+#include "About.h"
 
 namespace PetStore {
 
@@ -145,6 +146,7 @@ namespace PetStore {
 	private: System::Windows::Forms::ToolStripMenuItem^ visitasToolStripMenuItem4;
 	private: System::Windows::Forms::ToolStripMenuItem^ tratamientoToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ medicacionToolStripMenuItem2;
+private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 
 
 
@@ -271,6 +273,7 @@ namespace PetStore {
 			this->facturacionToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->descuentoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saldoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->countryContextMenuStrip->SuspendLayout();
 			this->menuStrip->SuspendLayout();
 			this->customerContextMenuStrip->SuspendLayout();
@@ -707,7 +710,7 @@ namespace PetStore {
 			});
 			this->menuStrip->Location = System::Drawing::Point(0, 0);
 			this->menuStrip->Name = L"menuStrip";
-			this->menuStrip->Size = System::Drawing::Size(1894, 40);
+			this->menuStrip->Size = System::Drawing::Size(1894, 42);
 			this->menuStrip->TabIndex = 4;
 			this->menuStrip->Text = L"menuStrip1";
 			// 
@@ -719,8 +722,9 @@ namespace PetStore {
 			// 
 			// acercaDeToolStripMenuItem
 			// 
+			this->acercaDeToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->acercaToolStripMenuItem });
 			this->acercaDeToolStripMenuItem->Name = L"acercaDeToolStripMenuItem";
-			this->acercaDeToolStripMenuItem->Size = System::Drawing::Size(138, 36);
+			this->acercaDeToolStripMenuItem->Size = System::Drawing::Size(138, 38);
 			this->acercaDeToolStripMenuItem->Text = L"Acerca de";
 			// 
 			// contactoToolStripMenuItem
@@ -945,13 +949,13 @@ namespace PetStore {
 					this->descuentoToolStripMenuItem, this->saldoToolStripMenuItem
 			});
 			this->paymentContextMenuStrip->Name = L"contextMenuStrip4";
-			this->paymentContextMenuStrip->Size = System::Drawing::Size(317, 168);
+			this->paymentContextMenuStrip->Size = System::Drawing::Size(226, 124);
 			// 
 			// facturacionToolStripMenuItem1
 			// 
 			this->facturacionToolStripMenuItem1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"facturacionToolStripMenuItem1.Image")));
 			this->facturacionToolStripMenuItem1->Name = L"facturacionToolStripMenuItem1";
-			this->facturacionToolStripMenuItem1->Size = System::Drawing::Size(316, 40);
+			this->facturacionToolStripMenuItem1->Size = System::Drawing::Size(225, 40);
 			this->facturacionToolStripMenuItem1->Text = L"Facturacion";
 			this->facturacionToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainPetStore::facturacionToolStripMenuItem1_Click);
 			// 
@@ -959,15 +963,22 @@ namespace PetStore {
 			// 
 			this->descuentoToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"descuentoToolStripMenuItem.Image")));
 			this->descuentoToolStripMenuItem->Name = L"descuentoToolStripMenuItem";
-			this->descuentoToolStripMenuItem->Size = System::Drawing::Size(316, 40);
+			this->descuentoToolStripMenuItem->Size = System::Drawing::Size(225, 40);
 			this->descuentoToolStripMenuItem->Text = L"Descuento";
 			// 
 			// saldoToolStripMenuItem
 			// 
 			this->saldoToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"saldoToolStripMenuItem.Image")));
 			this->saldoToolStripMenuItem->Name = L"saldoToolStripMenuItem";
-			this->saldoToolStripMenuItem->Size = System::Drawing::Size(316, 40);
+			this->saldoToolStripMenuItem->Size = System::Drawing::Size(225, 40);
 			this->saldoToolStripMenuItem->Text = L"Saldo";
+			// 
+			// acercaToolStripMenuItem
+			// 
+			this->acercaToolStripMenuItem->Name = L"acercaToolStripMenuItem";
+			this->acercaToolStripMenuItem->Size = System::Drawing::Size(359, 44);
+			this->acercaToolStripMenuItem->Text = L"Acerca";
+			this->acercaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainPetStore::acercaToolStripMenuItem_Click);
 			// 
 			// MainPetStore
 			// 
@@ -987,7 +998,7 @@ namespace PetStore {
 			this->MinimumSize = System::Drawing::Size(1920, 1080);
 			this->Name = L"MainPetStore";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"MainPetStore";
+			this->Text = L"La Angelina Veterinaria";
 			this->countryContextMenuStrip->ResumeLayout(false);
 			this->menuStrip->ResumeLayout(false);
 			this->menuStrip->PerformLayout();
@@ -1279,5 +1290,10 @@ namespace PetStore {
 		InvoiceManagement^ invoiceWindow = gcnew InvoiceManagement(this, this->app);
 		invoiceWindow->ShowDialog();
 	}
-	};
+	private: System::Void acercaToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		About^ aboutWindow = gcnew About(this, this->app);
+		aboutWindow->ShowDialog();
+	}
+};
 }
